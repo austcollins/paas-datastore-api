@@ -4,7 +4,13 @@ const express = require('express');
 
 const app = express();
 
+
+
 app.use('/api', require('./api'));
+
+app.get('/', (req, res) => {
+    res.send('Hello World!')
+  })
 
 const port = process.env.PORT || 8080;
 
