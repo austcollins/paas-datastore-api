@@ -8,6 +8,7 @@ const db = require(`./db-datastore.js`);
 
 const api = express.Router();
 
+// TODO: Delete this
 api.get('/', async (req, res) => {
   try {
     res.json(await db.list());
@@ -17,6 +18,11 @@ api.get('/', async (req, res) => {
   }
 });
 
+
+/**
+ * GET - Read the value of the named register
+ * 
+ */
 api.get('/:id(\\w+)', async (req, res) => {
   try {
     res.send(await db.get(req.params.id));
@@ -26,6 +32,9 @@ api.get('/:id(\\w+)', async (req, res) => {
   }
 });
 
+/**
+ * PUT - set a named register to a given number
+ */
 api.put('/:id(\\w+)', bodyParser.text(), async (req, res) => {
   try {
     await db.put(req.params.id, req.body);
@@ -34,6 +43,32 @@ api.put('/:id(\\w+)', bodyParser.text(), async (req, res) => {
     console.error(e);
     res.sendStatus(500);
   }
+});
+
+/**
+ * POST - add anumber to a named register
+ */
+api.post('/:id(\\w+)', bodyParser.text(), async (req, res) => {
+    try {
+      await db.put(req.params.id, req.body);
+      res.sendStatus(204);
+    } catch (e) {
+      console.error(e);
+      res.sendStatus(500);
+    }
+});
+
+/**
+ * DELETE - drop a named register
+ */
+api.delete('/:id(\\w+)', bodyParser.text(), async (req, res) => {
+    try {
+        await db.put(req.params.id, req.body);
+        res.sendStatus(204);
+    } catch (e) {
+        console.error(e);
+        res.sendStatus(500);
+    }
 });
 
 

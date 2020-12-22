@@ -1,16 +1,13 @@
 'use strict';
 
+// configure express
 const express = require('express');
-
 const app = express();
 
-
-
+// 
 app.use('/api', require('./api'));
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-  })
+app.use(express.static('static', { extensions: ['html'] }));
 
 const port = 80;
 
