@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
   })
 
-const port = process.env.PORT || 8080;
+const port = 80;
 
 app.listen(port, (err) => {
   if (err) console.log('error', err);
