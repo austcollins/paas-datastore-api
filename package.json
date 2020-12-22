@@ -1,0 +1,23 @@
+{
+  "name": "paas-datastore-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/austcollins/paas-datastore-api.git"
+  },
+  "author": "up904254",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/austcollins/paas-datastore-api/issues"
+  },
+  "homepage": "https://github.com/austcollins/paas-datastore-api#readme"
+}
