@@ -1,8 +1,10 @@
+'use strict';
+
 const express = require('express');
 
 const app = express();
 
-app.use(express.static('static', { extensions: ['html'] }));
+app.use('/api', require('./api'));
 
 const port = process.env.PORT || 8080;
 
