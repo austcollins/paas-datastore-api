@@ -12,7 +12,7 @@ function key(id) {
 module.exports.list = async () => {
   let [data] = await datastore.createQuery('strings').select('name').order('name').run();
   data = data.map((val) => val.name);
-  return data;
+  return (data === undefined || data.length == 0) ? 0 : data; 
 };
 
 module.exports.get = async (id) => {
