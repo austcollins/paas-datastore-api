@@ -1,5 +1,10 @@
 'use strict';
 
+// Checks if an object is empty
+function isEmptyObject(obj) {
+    return !Object.keys(obj).length;
+  }
+
 const express = require('express');
 const bodyParser = require('body-parser');
 
@@ -26,7 +31,7 @@ api.get('/', async (req, res) => {
 api.get('/:id(\\w+)', async (req, res) => {
   try {
     const value = await db.get(req.params.id)
-    if (await value == {}) {res.send(0)}
+    if (isEmptyObject(await value)) {res.send(0)}
     res.send(value);
   } catch (e) {
     console.error(e);
