@@ -71,11 +71,13 @@ api.post('/:id(\\w+)', bodyParser.text(), async (req, res) => {
 api.delete('/:id(\\w+)', bodyParser.text(), async (req, res) => {
     try {
         await db.put(req.params.id, req.body);
-        res.sendStatus(204);
+        const value = await db.get(req.params.id)
+        res.send(value);
     } catch (e) {
         console.error(e);
         res.sendStatus(500);
     }
+
 });
 
 
