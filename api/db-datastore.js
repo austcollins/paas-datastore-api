@@ -12,12 +12,13 @@ function key(id) {
 module.exports.list = async () => {
   let [data] = await datastore.createQuery('strings').select('name').order('name').run();
   data = data.map((val) => val.name);
-  return (data === undefined || data.length == 0) ? 0 : data; 
+  return data;
 };
 
 module.exports.get = async (id) => {
   const [data] = await datastore.get(key(id));
-  return (data === undefined || data.length == 0) ? 0 : data.val; 
+  if (data && data.val) return data.val;
+  return '';
 };
 
 module.exports.put = (id, val) => {
