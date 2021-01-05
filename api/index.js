@@ -31,7 +31,7 @@ api.get('/', async (req, res) => {
 api.get('/:id(\\w+)', async (req, res) => {
   try {
     const value = await db.get(req.params.id)
-    if (!value) { res.send('0') }
+    if (!value) { return res.send('0') }
     res.send(value);
   } catch (e) {
     console.error(e);
@@ -45,7 +45,7 @@ api.get('/:id(\\w+)', async (req, res) => {
 api.put('/:id(\\w+)', bodyParser.text(), async (req, res) => {
   try {
     await db.put(req.params.id, req.body);
-    res.send(req.body)
+    return res.send(req.body)
   } catch (e) {
     console.error(e);
     res.sendStatus(500);
