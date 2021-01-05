@@ -62,7 +62,6 @@ api.post('/:id(\\w+)', bodyParser.text(), async (req, res) => {
     try {
         // add the values together as numbers, then return to a string
         value = (+value + +await db.get(req.params.id)).toString()
-        console.log("2:value:" + await value)
     } catch (e) {
       // didn't exist -- do nothing
     }
@@ -70,8 +69,7 @@ api.post('/:id(\\w+)', bodyParser.text(), async (req, res) => {
     try {
         await db.put(req.params.id, await value);
         // return the value posted to the db
-        console.log("3:value:" + await value)
-        return res.send(value);
+       return res.send(value);
     } catch (e) {
       console.error(e);
       res.sendStatus(500);
