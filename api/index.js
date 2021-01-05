@@ -31,7 +31,7 @@ api.get('/', async (req, res) => {
 api.get('/:id(\\w+)', async (req, res) => {
   try {
     const value = await db.get(req.params.id)
-    if (await value == undefined) {res.send('0')}
+    if (!value) { res.send('0') }
     res.send(value);
   } catch (e) {
     console.error(e);
