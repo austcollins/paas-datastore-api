@@ -31,7 +31,7 @@ api.get('/', async (req, res) => {
 api.get('/:id(\\w+)', async (req, res) => {
   try {
     const value = await db.get(req.params.id)
-    if (isEmptyObject(await value)) {res.send('0')}
+    if (await value == undefined) {res.send('0')}
     res.send(value);
   } catch (e) {
     console.error(e);
@@ -80,7 +80,7 @@ api.post('/:id(\\w+)', bodyParser.text(), async (req, res) => {
  */
 api.delete('/:id(\\w+)', bodyParser.text(), async (req, res) => {
     try {
-        await db.put(req.params.id, req.body);
+        await db.delete(req.params.id);
         res.sendStatus(204);
     } catch (e) {
         console.error(e);

@@ -25,3 +25,7 @@ module.exports.get = async (id) => {
 module.exports.put = (id, val) => {
   return datastore.save({ key: key(id), data: { name: id, val } });
 };
+
+module.exports.delete = (id) => {
+  return datastore.delete(id);
+}
