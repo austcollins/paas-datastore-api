@@ -9,7 +9,7 @@ app.use('/api', require('./api'));
 
 app.use(express.static('static', { extensions: ['html'] }));
 
-const port = 80;
+const port = process.env.PORT || 8080;
 
 app.listen(port, (err) => {
   if (err) console.log('error', err);
