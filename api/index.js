@@ -45,7 +45,7 @@ api.get('/:id(\\w+)', async (req, res) => {
 api.put('/:id(\\w+)', bodyParser.text(), async (req, res) => {
   try {
     await db.put(req.params.id, req.body);
-    res.sendStatus(204);
+    res.send(req.body)
   } catch (e) {
     console.error(e);
     res.sendStatus(500);
@@ -60,6 +60,7 @@ api.post('/:id(\\w+)', bodyParser.text(), async (req, res) => {
     var value = req.body;
     // try to get the current value from the database
     try {
+        // add the values together as numbers, then return to a string
         value = (+value + +await db.get(req.params.id)).toString()
         console.log("2:value:" + await value)
     } catch (e) {
