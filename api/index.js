@@ -57,8 +57,9 @@ api.put('/:id(\\w+)', bodyParser.text(), async (req, res) => {
  */
 api.post('/:id(\\w+)', bodyParser.text(), async (req, res) => {
     try {
-      await db.put(req.params.id, req.body);
-      res.sendStatus(204);
+        await db.put(req.params.id, req.body);
+        const value = await db.get(req.params.id)
+        res.send(value);
     } catch (e) {
       console.error(e);
       res.sendStatus(500);
@@ -71,13 +72,11 @@ api.post('/:id(\\w+)', bodyParser.text(), async (req, res) => {
 api.delete('/:id(\\w+)', bodyParser.text(), async (req, res) => {
     try {
         await db.put(req.params.id, req.body);
-        const value = await db.get(req.params.id)
-        res.send(value);
+        res.sendStatus(204);
     } catch (e) {
         console.error(e);
         res.sendStatus(500);
     }
-
 });
 
 
