@@ -17,8 +17,7 @@ module.exports.list = async () => {
 
 module.exports.get = async (id) => {
   const [data] = await datastore.get(key(id));
-  if (data && data.val) return data.val;
-  return '';
+  return (data === undefined || data.length == 0) ? 0 : data.val; 
 };
 
 module.exports.put = (id, val) => {
