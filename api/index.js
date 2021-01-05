@@ -62,16 +62,16 @@ api.post('/:id(\\w+)', bodyParser.text(), async (req, res) => {
     // try to get the current value from the database
     try {
         value += await db.get(req.params.id)
-        console.log("2:value:" + value)
+        console.log("2:value:" + await value)
     } catch (e) {
       // didn't exist -- do nothing
     }
     // post the new value
     try {
-        await db.put(req.params.id, value);
+        await db.put(req.params.id, await value);
         // return the value posted to the db
-        console.log("3:value:" + value)
-        res.send(value);
+        console.log("3:value:" + await value)
+        return res.send(value);
     } catch (e) {
       console.error(e);
       res.sendStatus(500);
