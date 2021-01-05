@@ -58,16 +58,19 @@ api.put('/:id(\\w+)', bodyParser.text(), async (req, res) => {
 api.post('/:id(\\w+)', bodyParser.text(), async (req, res) => {
     // set value to posted value
     var value = req.body;
+    console.log("1:value:" + value)
     // try to get the current value from the database
     try {
         value += await db.get(req.params.id)
+        console.log("2:value:" + value)
     } catch (e) {
       // didn't exist -- do nothing
     }
     // post the new value
     try {
-        await db.put(req.params.id, req.body);
+        await db.put(req.params.id, value);
         // return the value posted to the db
+        console.log("3:value:" + value)
         res.send(value);
     } catch (e) {
       console.error(e);
