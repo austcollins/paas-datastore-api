@@ -57,11 +57,11 @@ api.put('/:id(\\w+)', bodyParser.text(), async (req, res) => {
  */
 api.post('/:id(\\w+)', bodyParser.text(), async (req, res) => {
     // set value to posted value
-    var value = parseInt(req.body);
+    var value = +req.body;
     console.log("1:value:" + value)
     // try to get the current value from the database
     try {
-        value += await db.get(req.params.id)
+        value += +await db.get(req.params.id)
         console.log("2:value:" + await value)
     } catch (e) {
       // didn't exist -- do nothing
