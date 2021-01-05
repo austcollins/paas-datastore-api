@@ -27,5 +27,5 @@ module.exports.put = (id, val) => {
 };
 
 module.exports.delete = (id) => {
-  return datastore.delete(id);
+  return datastore.delete(key(id));
 }
