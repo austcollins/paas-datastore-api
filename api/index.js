@@ -53,12 +53,21 @@ api.put('/:id(\\w+)', bodyParser.text(), async (req, res) => {
 });
 
 /**
- * POST - add anumber to a named register
+ * POST - add a number to a named register
  */
 api.post('/:id(\\w+)', bodyParser.text(), async (req, res) => {
+    // set value to posted value
+    var value = req.body;
+    // try to get the current value from the database
+    try {
+        value += await db.get(req.params.id)
+    } catch (e) {
+      // didn't exist -- do nothing
+    }
+    // post the new value
     try {
         await db.put(req.params.id, req.body);
-        const value = await db.get(req.params.id)
+        // return the value posted to the db
         res.send(value);
     } catch (e) {
       console.error(e);
